@@ -5,6 +5,9 @@ mkrepo
 .. image:: https://travis-ci.com/gbenhaim/mkrepo.svg?branch=master
     :target: https://travis-ci.com/gbenhaim/mkrepo
 
+.. image:: https://quay.io/repository/gbenhaim/mkrepo/status
+    :target: https://quay.io/repository/gbenhaim/mkrepo
+
 Build Yum/DNF repositories from multiple sources
 
 

@@ -27,3 +27,8 @@ jobs:
       script:
         - make container
         - make func-test IMAGE="$(make container-static-version)"
+      deploy:
+        provider: script
+        script: echo "$REGISTRY_PASS" | docker login -u "$REGISTRY_USER" --password-stdin quay.io && make push-container
+        on:
+          branch: master

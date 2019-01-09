@@ -34,7 +34,7 @@ endef
 
 
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
-REG_AND_REPO := quay.io/mkrepo
+REG_AND_REPO := quay.io/gbenhaim/mkrepo
 LATEST_TAG := $(REG_AND_REPO):latest
 STATIC_TAG = $(REG_AND_REPO):$(shell $(GET_CONTAINER_VERSION))
 
@@ -101,3 +101,7 @@ container: dist
 container-static-version:
 	@echo $(STATIC_TAG)
 
+
+push-container:
+	docker push $(STATIC_TAG)
+	docker push $(LATEST_TAG)
