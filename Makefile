@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build help install-user develop container container-static-version
+.PHONY: clean clean-test clean-pyc clean-build help install-user develop container container-static-version func-test
 .DEFAULT_GOAL := help
 
 
@@ -68,6 +68,9 @@ lint: ## check style with flake8
 unit-test: ## run tests quickly with the default Python
 	pytest -sv tests/unit
 
+func-test:
+	tests/func/func-tests.sh $(IMAGE)
+
 test-all: ## run tests on every Python version with tox
 	tox
 
@@ -97,3 +100,4 @@ container: dist
 
 container-static-version:
 	@echo $(STATIC_TAG)
+

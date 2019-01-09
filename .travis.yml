@@ -20,3 +20,10 @@ jobs:
     - stage: 'Python tests'
       name: 'Tox'
       script: tox
+    - stage: 'Docker'
+      sudo: required
+      services:
+        - docker
+      script:
+        - make container
+        - make func-test IMAGE="$(make container-static-version)"
