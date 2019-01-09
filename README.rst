@@ -2,9 +2,8 @@
 mkrepo
 =======
 
-.. image:: https://img.shields.io/travis/gbenhaim/mkrepo.svg
-        :target: https://travis-ci.org/gbenhaim/mkrepo
-
+.. image:: https://travis-ci.com/gbenhaim/mkrepo.svg?branch=master
+    :target: https://travis-ci.com/gbenhaim/mkrepo
 
 Build Yum/DNF repositories from multiple sources
 
