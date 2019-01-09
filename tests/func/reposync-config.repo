@@ -1,0 +1,14 @@
+[main]
+reposdir = /dev/null
+max_connections = 50
+ip_resolve = 4
+gpgcheck = 0
+plugins = 1
+
+
+[centos-base-el7]
+name = CentOS7 Base
+baseurl = http://mirror.centos.org/centos/7/os/x86_64/
+enabled = 1
+max_connections = 10
+includepkgs = tree

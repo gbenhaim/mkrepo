@@ -1,0 +1,14 @@
+*.py[co]
+MANIFEST
+dist/
+build/
+.idea
+logs*
+mkrepo.egg-info
+*/*venv
+.bash*
+.cache*
+tags
+cscope.out
+*ipynb_checkpoints*
+**.tox
