@@ -30,7 +30,7 @@ def cli(log_level):
 @cli.command()
 @click.option(
     '--custom-source',
-    type=click.Path(exists=True, resolve_path=True, readable=True),
+    type=str,
     metavar='<custom-source>',
     multiple=True,
     help=dedent(
