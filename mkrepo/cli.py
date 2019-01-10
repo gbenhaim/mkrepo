@@ -48,9 +48,8 @@ def cli(log_level):
     '--repoman-config',
     type=click.Path(resolve_path=True, file_okay=True),
     metavar='<repoman-config>',
-    default='/etc/repoman/repoman.conf',
-    show_default=True,
-    help='A config for repoman',
+    help='A config for repoman. '
+         'Note that store.RPMStore.rpm_dir is not configurable.',
 )
 @click.option(
     '--yum-config',

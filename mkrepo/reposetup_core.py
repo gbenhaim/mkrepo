@@ -145,7 +145,6 @@ def do_merge(sources, dest, repoman_config=None):
     Returns:
         None
     """
-    repoman_config = None
     cmd = []
     cmd_suffix = [
         '--option=store.RPMStore.rpm_dir=', dest, 'add'
