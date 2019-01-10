@@ -69,7 +69,8 @@ def _reposetup(
             do_sync(yum_config, sync_dir, repoid_to_path.keys())
 
         do_merge(
-            custom_source + repoid_to_path.values(),
+            custom_source
+            + [r + ':only-missing' for r in repoid_to_path.values()],
             dest,
             repoman_config
         )
