@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build help install-user develop container container-static-version func-test
+.PHONY: clean clean-test clean-pyc clean-build help install-user develop container container-static-version func-test tox
 .DEFAULT_GOAL := help
 
 
@@ -71,8 +71,10 @@ unit-test: ## run tests quickly with the default Python
 func-test:
 	tests/func/func-tests.sh $(IMAGE)
 
-test-all: ## run tests on every Python version with tox
+tox: ## run tests on every Python version with tox
 	tox
+
+test-all: tox func-test
 
 coverage: ## check code coverage quickly with the default Python
 	coverage run --source mkrepo -m pytest
