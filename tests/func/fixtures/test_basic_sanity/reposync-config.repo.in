@@ -1,0 +1,12 @@
+[main]
+reposdir = /dev/null
+
+[repo-a]
+name = repo-a
+baseurl = file://@ROOT@/repo-a
+enabled = 1
+
+[repo-b]
+name = repo-b
+baseurl = file://@ROOT@/repo-b
+enabled = 1

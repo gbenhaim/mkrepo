@@ -12,3 +12,7 @@ tags
 cscope.out
 *ipynb_checkpoints*
 **.tox
+**.rpm
+**reposync-config.repo
+**extra-sources.txt
+**repodata
