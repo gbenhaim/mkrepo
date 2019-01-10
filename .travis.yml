@@ -24,6 +24,8 @@ jobs:
       sudo: required
       services:
         - docker
+      before_install:
+        - sudo apt-get install -y realpath
       script:
         - make container
         - make func-test IMAGE="$(make container-static-version)"
