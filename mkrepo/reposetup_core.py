@@ -24,7 +24,7 @@ class RepomanError(Exception):
 
 def reposetup(
     dest, sync_dir, sync, yum_config,
-    repoman_config, custom_source
+    repoman_config, custom_source, lock_timeout
 ):
     try:
         _reposetup(
@@ -33,7 +33,8 @@ def reposetup(
             sync=sync,
             yum_config=yum_config,
             repoman_config=repoman_config,
-            custom_source=custom_source
+            custom_source=custom_source,
+            lock_timeout=lock_timeout
         )
         LOGGER.info('Successfully created repo {}'.format(dest))
     except Exception as e:
@@ -43,8 +44,8 @@ def reposetup(
 
 
 def _reposetup(
-    dest, sync_dir, sync,
-    yum_config, repoman_config, custom_source
+    dest, sync_dir, sync, yum_config,
+    repoman_config, custom_source, lock_timeout
 ):
     """Run the main flow
 
@@ -58,12 +59,11 @@ def _reposetup(
     """
     repoid_to_path = get_repo_paths(sync_dir, yum_config)
     utils.safe_mkdir(dest, *repoid_to_path.values())
-    lock_timeout = 180
 
     with utils.LockFiles(
-            [dest] + repoid_to_path.values(),
-            timeout=lock_timeout,
-            lock_name='mkrepo.lock'
+        [dest] + repoid_to_path.values(),
+        timeout=lock_timeout,
+        lock_name='mkrepo.lock'
     ):
         if sync:
             do_sync(yum_config, sync_dir, repoid_to_path.keys())

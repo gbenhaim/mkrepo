@@ -82,6 +82,7 @@ test_basic_sanity() {
 		_mkrepo \
         	-l debug \
         	reposetup \
+            --lock-timeout 180 \
         	--sync-dir "$sync_dir" \
         	--dest "$dest" \
         	--yum-config "$yum_config" \

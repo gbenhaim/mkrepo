@@ -29,6 +29,12 @@ def cli(log_level):
 
 @cli.command()
 @click.option(
+    '--lock-timeout',
+    type=int,
+    metavar='<lock-timeout>',
+    help='Time in seconds to wait for a lock for all the required repos'
+)
+@click.option(
     '--custom-source',
     type=str,
     metavar='<custom-source>',
@@ -85,7 +91,10 @@ def cli(log_level):
     metavar='<dest>',
     help='Where to create the repo',
 )
-def reposetup(dest, sync_dir, sync, yum_config, repoman_config, custom_source):
+def reposetup(
+    dest, sync_dir, sync, yum_config,
+    repoman_config, custom_source, lock_timeout
+):
     """Run the main flow"""
     try:
         reposetup_core.reposetup(
@@ -94,7 +103,8 @@ def reposetup(dest, sync_dir, sync, yum_config, repoman_config, custom_source):
             sync=sync,
             yum_config=yum_config,
             repoman_config=repoman_config,
-            custom_source=list(custom_source)
+            custom_source=list(custom_source),
+            lock_timeout=lock_timeout
         )
     except reposetup_core.ReposetupError as e:
         LOGGER.error('Failed to run reposetup: {}'.format(str(e)))
