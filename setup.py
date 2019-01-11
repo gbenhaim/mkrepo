@@ -28,7 +28,9 @@ def get_version_from_pkg_metadata(project_dir=curdir):
 
 def get_version_from_git():
     p = re.compile(r'(?P<major>[0-9]+)\.(?P<minor>[0-9]+)-(?P<patch>[0-9]+)-(?P<sha>[a-z0-9]+)')
-    git_desc = check_output(['git', 'describe', '--tags', '--long'])
+    git_desc = check_output(
+        ['git', 'describe', '--tags', '--long']
+    ).decode('utf-8')
     m = p.match(git_desc)
     if not m:
         raise RuntimeError('Failed to parse git output: {}'.format(git_desc))
