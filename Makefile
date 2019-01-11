@@ -62,8 +62,16 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 
-lint: ## check style with flake8
+python-lint: ## check style with flake8
 	flake8 mkrepo tests
+
+shell-lint:
+	@docker run \
+		--rm \
+		-v "${PWD}":/mnt \
+		koalaman/shellcheck:v0.6.0 \
+		-s bash -S style $$(find . -iname "*.sh") \
+		&& echo shell-lint: OK
 
 unit-test: ## run tests quickly with the default Python
 	pytest -sv tests/unit
