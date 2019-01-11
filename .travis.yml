@@ -5,23 +5,30 @@ branches:
 
 language: python
 cache: pip
-matrix:
-  include:
-    - python: '2.7'
-      env: 'TOXENV=py27'
-    - python: '3.4'
-      env: 'TOXENV=py34'
 
 install:
   - pip install -r dev-requirements.txt.lock
 
 jobs:
   include:
-    - stage: 'Python tests'
-      name: 'Tox'
+    - stage: 'Lint and Unit Tests'
+      name: 'py27'
+      python: '2.7'
+      env: 'TOXENV=py27'
       script: tox
-    - stage: 'Docker'
+    - name: 'py34'
+      python: '3.4'
+      env: 'TOXENV=py34'
+      script: tox
+    - name: 'shell'
       sudo: required
+      services:
+        - docker
+      install: ''
+      script: make shell-lint
+
+    - stage: 'Func tests'
+      name: 'Build container image and run func-tests'
       services:
         - docker
       before_install:

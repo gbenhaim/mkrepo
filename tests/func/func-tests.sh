@@ -1,13 +1,15 @@
 #!/bin/bash -ex
 
 main() {
+    # shellcheck disable=SC2119
 #    test_container_starts
+    # shellcheck disable=SC2119
     test_basic_sanity
 
     echo "Func tests: Success :)"
 }
 
-
+# shellcheck disable=SC2120
 test_container_starts() {
     _mkrepo() {
         docker run --rm -it "${IMAGE:-$1}" "$@"
@@ -17,14 +19,16 @@ test_container_starts() {
     _mkrepo --help
 }
 
+
+# shellcheck disable=SC2120
 test_basic_sanity() {
-	local root="$(realpath ${0%/*})"
-	local fixtures="${root}/fixtures/test_basic_sanity"
-    local sync_dir="$(mktemp -d)"
-    local dest="$(mktemp -d)"
+    local root && root="$(realpath "${0%/*}")"
+    local fixtures="${root}/fixtures/test_basic_sanity"
+    local sync_dir && sync_dir="$(mktemp -d)"
+    local dest && dest="$(mktemp -d)"
     local yum_config="${fixtures}/reposync-config.repo"
-	local custom_source="${fixtures}/extra-sources.txt"
-	local user="$(id -u)"
+    local custom_source="${fixtures}/extra-sources.txt"
+    local user && user="$(id -u)"
 
 	_mkrepo() {
         docker run \
