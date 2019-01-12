@@ -31,6 +31,8 @@ def cli(log_level):
 @click.option(
     '--lock-timeout',
     type=int,
+    default=180,
+    show_default=True,
     metavar='<lock-timeout>',
     help='Time in seconds to wait for a lock for all the required repos'
 )
