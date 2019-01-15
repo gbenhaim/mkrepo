@@ -21,6 +21,16 @@ Features
 * Cache RPMs from remote repositories in order to accelerate repo composition.
 * Fine grained control on RPMs selection.
 
+Usage
+-------
+.. code-block:: bash
+
+   $ docker run --rm  quay.io/gbenhaim/mkrepo:latest [OPTIONS] COMMAND [ARGS]...
+
+
+*In order to keep persistent RPM cache,
+or creating the target repo outside of the container, use Docker's `-v` option.*
+
 Credits
 -------
 
