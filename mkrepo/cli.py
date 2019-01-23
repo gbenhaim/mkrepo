@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
-"""Console script for ir."""
+"""Console script for mkrepo."""
 from __future__ import print_function
 
 import click
 from pkg_resources import get_distribution
 import logging
+import sys
 from textwrap import dedent
 
 from mkrepo import reposetup_core
@@ -110,6 +111,7 @@ def reposetup(
         )
     except reposetup_core.ReposetupError as e:
         LOGGER.error('Failed to run reposetup: {}'.format(str(e)))
+        sys.exit(1)
 
 
 @cli.command()
